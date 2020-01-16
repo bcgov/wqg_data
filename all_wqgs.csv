@@ -1,4 +1,4 @@
-Variable,EMS_Code,Use,Term,Media,Phototoxic,Logical Condition,Narrative,MinimumLimit,MaximumLimit,Units,Statistic,WQG_Type,Reference,Reference Link,Overview Report Link,Technical Document Link
+Variable,EMS_Code,Use,Term,Media,Phototoxic,Logical Condition,Notes,MinimumLimit,MaximumLimit,Units,Statistic,WQG_Type,Reference,Reference Link,Overview Report Link,Technical Document Link
 "1,1,2,2-tetrachloroethene (tetrachloroethylene, perchlorethylene)",T030,Freshwater Aquatic Life,Long,Water,,,,,110,µg/L,mean,Working,Canadian Council of Ministers of the Environment (CCME) ,http://st-ts.ccme.ca/en/index.html,,
 "1,1,2-trichloroethene, trichloroethylene",T029,Freshwater Aquatic Life,Long,Water,,,,,21,µg/L,mean,Working,Canadian Council of Ministers of the Environment (CCME) ,http://st-ts.ccme.ca/en/index.html,,
 "1,1,2-trichloroethene, trichloroethylene",T029,Livestock,Long,Water,,,,,50,µg/L,mean,Working,Canadian Council of Ministers of the Environment (CCME) ,http://st-ts.ccme.ca/en/index.html,,
