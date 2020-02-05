@@ -5,12 +5,23 @@ library(rems)
 
 data <- read_csv("all_wqgs.csv")
 
-data$Notes %<>%
-  str_replace("Lower SWQG;*\\s*", "")
+data$Notes %<>% str_replace("Interim Sediment Quality Guideline", "")
 
-data$Notes[str_detect(data$Notes, "^$")] <- NA
+data$Notes[data$Notes == ""] <- NA
+
+unique(data$Notes[!is.na(data$Notes) & str_detect(data$Notes, "Interim Sediment Quality Guideline")])
+
+filter(data, Days == 1, Samples == 1, Statistic == "mean") %>%
+  select(Variable, EMS_Code, Use) %>%
+  print(n = 50)
+
+
 
 write_csv(data, "all_wqgs.csv", na = "")
+
+
+
+distinct(select(data, Days, Samples, Statistic))
 
 filter(data, EMS_Code %in% paste0("EMS_", c("0147", "0148", "0450"))) %>%
   select(Variable, EMS_Code, Use, Media, Days, Samples, Statistic, Notes) %>%
