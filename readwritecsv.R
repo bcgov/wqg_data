@@ -5,7 +5,9 @@ library(rems)
 
 data <- read_csv("all_wqgs.csv")
 
-data$EMS_Code[data$EMS_Code %in% c("EMS_MCYS", "EMS_SULF")] <- NA
+filter(data, EMS_Code %in% paste0("EMS_", c("0147", "0148", "0450"))) %>%
+  select(Variable, EMS_Code, Use, Media, Days, Samples, Statistic, Notes) %>%
+  arrange(EMS_Code) %>% pull(Notes)
 
 write_csv(data, "all_wqgs.csv", na = "")
 
