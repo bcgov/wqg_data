@@ -5,10 +5,8 @@ library(rems)
 
 data <- read_csv("all_wqgs.csv")
 
-data$PredictedEffectLevel[!is.na(data$Notes) & str_detect(data$Notes, "Upper SWQG")] <- "Probable Effect"
-
 data$Notes %<>%
-  str_replace("Upper SWQG;*\\s*", "")
+  str_replace("Lower SWQG;*\\s*", "")
 
 data$Notes[str_detect(data$Notes, "^$")] <- NA
 
