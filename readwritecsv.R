@@ -5,17 +5,9 @@ library(rems)
 
 data <- read_csv("all_wqgs.csv")
 
-data$PredictedEffectLevel <- "No Effect"
-data$PredictedEffectLevel[grepl("Probable Effect Level", data$Notes)] <- "Probable Effect"
+data$Samples[str_detect(data$Notes, "90th percentile calculated")] <- 5
 
-data$Notes[grepl("Probable Effect Level", data$Notes)] <- NA
-
-data$Direction %<>% paste("Limit")
-
-data %<>% select(c("Variable", "EMS_Code", "Use", "Media", "Days", "Samples", "Statistic",
-"Notes", "Condition", "PredictedEffectLevel", "Direction", "Limit",
-"Units", "Type", "Reference", "Reference Link",
-"Overview Report Link", "Technical Document Link"))
+data$Notes[!is.na(data$Notes) & str_detect(data$Notes, "90th percentile calculated")] <- NA
 
 write_csv(data, "all_wqgs.csv", na = "")
 
