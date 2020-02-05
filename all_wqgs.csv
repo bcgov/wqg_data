@@ -1,4 +1,4 @@
-Variable,EMS_Code,Use,Media,Days,Samples,Statistic,Notes,Condition,PredictedEffectLevel,Direction,Limit,Units,Type,Reference,Reference Link,Overview Report Link,Technical Document Link
+Variable,EMS_Code,Use,Media,Days,Samples,Statistic,Notes,Condition,PredictedEffectLevel,Direction,Limit,Units,Status,Reference,Reference Link,Overview Report Link,Technical Document Link
 "1,1,2-Trichloroethene (Trichloroethylene)",EMS_T029,Agriculture - Livestock,Water,30,5,mean,,,No Effect,Upper Limit,50,ug/L,Working,Canadian Council of Ministers of the Environment (CCME),http://st-ts.ccme.ca/en/index.html,,
 "1,1,2-Trichloroethene (Trichloroethylene)",EMS_T029,Aquatic Life - Freshwater,Water,30,5,mean,,,No Effect,Upper Limit,21,ug/L,Working,Canadian Council of Ministers of the Environment (CCME),http://st-ts.ccme.ca/en/index.html,,
 "1,1,2,2-Tetrachloroethene (Tetrachloroethylene, Perchlorethylene)",EMS_T030,Aquatic Life - Freshwater,Water,30,5,mean,,,No Effect,Upper Limit,110,ug/L,Working,Canadian Council of Ministers of the Environment (CCME),http://st-ts.ccme.ca/en/index.html,,
