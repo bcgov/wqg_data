@@ -5,27 +5,17 @@ library(rems)
 
 data <- read_csv("all_wqgs.csv")
 
-data %<>% mutate(Keep = is.na(Minimum) & is.na(Maximum))
+data$PredictedEffectLevel <- "No Effect"
+data$PredictedEffectLevel[grepl("Probable Effect Level", data$Notes)] <- "Probable Effect"
 
-data %<>% mutate(Minimum = as.character(Minimum)) %>%
-  pivot_longer(c(Minimum, Maximum), names_to = "Direction") %>%
-  filter(!is.na(value) | Keep)
+data$Notes[grepl("Probable Effect Level", data$Notes)] <- NA
 
-data$Direction[data$Keep] <- NA
+data$Direction %<>% paste("Limit")
 
-data %<>% distinct()
-
-data$PredictedEffectLevel <- NA_character_
-
-data %<>%  select(c("Variable", "EMS_Code", "Use", "Media", "Days", "Samples",
-"Notes", "Condition", "PredictedEffectLevel", "Direction", Limit = "value", "Units", "Statistic",
-"Type", "Reference", "Reference Link", "Overview Report Link",
-"Technical Document Link"))
-
-data$Direction %<>% str_replace("Maximum", "Upper") %>%
-  str_replace("Minimum", "Lower")
-
-data %<>% arrange(Variable, EMS_Code, Use, Media, Days, Samples)
+data %<>% select(c("Variable", "EMS_Code", "Use", "Media", "Days", "Samples", "Statistic",
+"Notes", "Condition", "PredictedEffectLevel", "Direction", "Limit",
+"Units", "Type", "Reference", "Reference Link",
+"Overview Report Link", "Technical Document Link"))
 
 write_csv(data, "all_wqgs.csv", na = "")
 
