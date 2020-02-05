@@ -5,9 +5,12 @@ library(rems)
 
 data <- read_csv("all_wqgs.csv")
 
-data$Days[!is.na(data$Notes) & str_detect(data$Notes, "Minimum 5 samples")] <- 30
+data$PredictedEffectLevel[!is.na(data$Notes) & str_detect(data$Notes, "Upper SWQG")] <- "Probable Effect"
 
-data$Notes[!is.na(data$Notes) & str_detect(data$Notes, "Minimum 5 samples")] <- NA
+data$Notes %<>%
+  str_replace("Upper SWQG;*\\s*", "")
+
+data$Notes[str_detect(data$Notes, "^$")] <- NA
 
 write_csv(data, "all_wqgs.csv", na = "")
 
