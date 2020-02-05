@@ -5,7 +5,9 @@ library(rems)
 
 data <- read_csv("all_wqgs.csv")
 
-#write_csv(data, "all_wqgs.csv", na = "")
+data$EMS_Code[data$EMS_Code %in% c("EMS_B024", "EMS_B023")] <- "EMS_B021"
+
+write_csv(data, "all_wqgs.csv", na = "")
 
 #codes <- wqbc::ems_codes
 
