@@ -5,9 +5,9 @@ library(rems)
 
 data <- read_csv("all_wqgs.csv")
 
-data$Samples[str_detect(data$Notes, "90th percentile calculated")] <- 5
+data$Days[!is.na(data$Notes) & str_detect(data$Notes, "Minimum 5 samples")] <- 30
 
-data$Notes[!is.na(data$Notes) & str_detect(data$Notes, "90th percentile calculated")] <- NA
+data$Notes[!is.na(data$Notes) & str_detect(data$Notes, "Minimum 5 samples")] <- NA
 
 write_csv(data, "all_wqgs.csv", na = "")
 
