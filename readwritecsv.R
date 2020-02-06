@@ -2,10 +2,19 @@ library(tidyverse)
 library(magrittr)
 library(wqbc)
 library(rems)
+library(daff)
 
 data <- read_csv("all_wqgs.csv")
 
-data$Notes %<>% str_replace("0.23 .+/g maximum level f", "F")
+data_old <- data
+
+data %>% filter(Samples == 1, Days == 1, Statistic == "mean")
+
+data$Statistic[data$Statistic == "mean" &
+                 data$Samples == 1 &
+                 data$Days == 1] <- "max"
+
+render_diff(diff_data(data_old, data))
 
 write_csv(data, "all_wqgs.csv", na = "")
 
