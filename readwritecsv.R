@@ -5,7 +5,7 @@ library(rems)
 
 data <- read_csv("all_wqgs.csv")
 
-data %<>% rename(Status = Type)
+data$Notes %<>% str_replace("0.23 .+/g maximum level f", "F")
 
 write_csv(data, "all_wqgs.csv", na = "")
 
