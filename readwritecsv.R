@@ -8,7 +8,7 @@ data <- read_csv("all_wqgs.csv")
 
 data_old <- data
 
-data$Direction[data$Direction == "NA Limit"] <- NA
+data$EMS_Code %<>% str_replace("-", "_")
 
 patch <- diff_data(data_old, data)
 render_diff(patch)
