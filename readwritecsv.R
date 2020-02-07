@@ -8,9 +8,7 @@ data <- read_csv("all_wqgs.csv")
 
 data_old <- data
 
-data$Statistic[data$Direction == "Upper Limit" &
-                 data$Samples == 1 &
-                 data$Days == 1] <- "max"
+data$Direction[data$Direction == "NA Limit"] <- NA
 
 patch <- diff_data(data_old, data)
 render_diff(patch)
@@ -19,9 +17,7 @@ saveRDS(patch, "patch.RDS")
 
 write_csv(data, "all_wqgs.csv", na = "")
 
-
-
-distinct(select(data, Days, Samples, Statistic))
+distinct(select(data, Days, Samples, Direction, Statistic))
 
 filter(data, EMS_Code %in% paste0("EMS_", c("0147", "0148", "0450"))) %>%
   select(Variable, EMS_Code, Use, Media, Days, Samples, Statistic, Notes) %>%
