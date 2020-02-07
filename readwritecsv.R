@@ -8,9 +8,9 @@ data <- read_csv("all_wqgs.csv")
 
 data_old <- data
 
-data$Statistic[data$Direction == "Lower Limit" &
+data$Statistic[data$Direction == "Upper Limit" &
                  data$Samples == 1 &
-                 data$Days == 1] <- "min"
+                 data$Days == 1] <- "max"
 
 patch <- diff_data(data_old, data)
 render_diff(patch)
