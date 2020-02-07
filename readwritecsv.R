@@ -8,8 +8,6 @@ data <- read_csv("all_wqgs.csv")
 
 data_old <- data
 
-data$EMS_Code %<>% str_replace("-", "_")
-
 patch <- diff_data(data_old, data)
 render_diff(patch)
 
@@ -19,9 +17,9 @@ if(FALSE) {
   saveRDS(patch, "patch.RDS")
 }
 
-distinct(select(data, Days, Samples, Direction, Statistic)) %>%
+distinct(select(data, Type, Days, Samples, Direction, Statistic)) %>%
   filter(!is.na(Direction)) %>%
-  arrange(Days, Samples, Direction, Statistic)
+  arrange(Type, Days, Samples, Direction, Statistic)
 
 #codes <- wqbc::ems_codes
 
