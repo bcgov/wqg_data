@@ -8,13 +8,14 @@ data <- read_csv("all_wqgs.csv")
 
 data_old <- data
 
-data %>% filter(Samples == 1, Days == 1, Statistic == "mean")
-
-data$Statistic[data$Statistic == "mean" &
+data$Statistic[data$Direction == "Lower Limit" &
                  data$Samples == 1 &
-                 data$Days == 1] <- "max"
+                 data$Days == 1] <- "min"
 
-render_diff(diff_data(data_old, data))
+patch <- diff_data(data_old, data)
+render_diff(patch)
+
+saveRDS(patch, "patch.RDS")
 
 write_csv(data, "all_wqgs.csv", na = "")
 
