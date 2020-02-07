@@ -13,15 +13,15 @@ data$Direction[data$Direction == "NA Limit"] <- NA
 patch <- diff_data(data_old, data)
 render_diff(patch)
 
-saveRDS(patch, "patch.RDS")
+if(FALSE) {
+  write_csv(data, "all_wqgs.csv", na = "")
 
-write_csv(data, "all_wqgs.csv", na = "")
+  saveRDS(patch, "patch.RDS")
+}
 
-distinct(select(data, Days, Samples, Direction, Statistic))
-
-filter(data, EMS_Code %in% paste0("EMS_", c("0147", "0148", "0450"))) %>%
-  select(Variable, EMS_Code, Use, Media, Days, Samples, Statistic, Notes) %>%
-  arrange(EMS_Code) %>% pull(Notes)
+distinct(select(data, Days, Samples, Direction, Statistic)) %>%
+  filter(!is.na(Direction)) %>%
+  arrange(Days, Samples, Direction, Statistic)
 
 #codes <- wqbc::ems_codes
 
