@@ -8,18 +8,8 @@ data <- read_csv("all_wqgs.csv")
 
 data_old <- data
 
-data$NotesCondition <- NA_character_
-data$NotesCondition[str_detect(data$Notes, "^Phototoxic$")] <- "Phototoxic Environment"
-data$NotesCondition[str_detect(data$Notes, "^Not Phototoxic$")] <- "Non-Phototoxic Environment"
-
-data$Notes[str_detect(data$Notes, "^Phototoxic$")] <- NA_character_
-data$Notes[str_detect(data$Notes, "^Not Phototoxic$")] <- NA_character_
-
-data %<>% select(c("UniqueID", "Variable", "EMS_Code", "Use", "Media", "Type",
-"Days", "Samples", "Statistic", "Notes", "Condition", "NotesCondition", "PredictedEffectLevel",
-"Direction", "Limit", "Units", "Status", "Reference", "Reference Link",
-"Overview Report Link", "Technical Document Link"
-))
+data$NotesCondition[str_detect(data$Notes, "active")] <- "Active Ingredient"
+data$Notes[str_detect(data$Notes, "active")] <- NA
 
 if(FALSE) {
   patch <- diff_data(data_old, data)
