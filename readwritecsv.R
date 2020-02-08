@@ -8,8 +8,9 @@ data <- read_csv("all_wqgs.csv")
 
 data_old <- data
 
-data$NotesCondition[str_detect(data$Notes, "active")] <- "Active Ingredient"
-data$Notes[str_detect(data$Notes, "active")] <- NA
+data$NotesCondition[str_detect(data$Notes, 'soil EMS_0004')] <- "pH (EMS_0004) in Soil"
+
+data$Notes[str_detect(data$Notes, 'soil EMS_0004')] <- NA
 
 if(FALSE) {
   patch <- diff_data(data_old, data)
