@@ -8,9 +8,13 @@ data <- read_csv("all_wqgs.csv")
 
 data_old <- data
 
-data$NotesCondition[str_detect(data$Notes, 'sediment containing 1% organic carbon')] <- "Sediment with 1% Organic Carbon"
+note <- 'When sediment contains 1% organic carbon'
 
-data$Notes[str_detect(data$Notes, 'sediment containing 1% organic carbon')] <- NA
+unique(data$Notes[str_detect(data$Notes, note )])
+
+data$NotesCondition[str_detect(data$Notes, note)] <- "Sediment with 1% Organic Carbon"
+
+data$Notes[str_detect(data$Notes, note)] <- NA
 
 if(FALSE) {
   patch <- diff_data(data_old, data)
