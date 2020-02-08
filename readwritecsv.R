@@ -8,18 +8,19 @@ data <- read_csv("all_wqgs.csv")
 
 data_old <- data
 
-patch <- diff_data(data_old, data)
-render_diff(patch)
-
 if(FALSE) {
-  write_csv(data, "all_wqgs.csv", na = "")
+  patch <- diff_data(data_old, data)
+  render_diff(patch)
 
+  write_csv(data, "all_wqgs.csv", na = "")
   saveRDS(patch, "patch.RDS")
 }
 
 distinct(select(data, Type, Days, Samples, Direction, Statistic)) %>%
   filter(!is.na(Direction)) %>%
   arrange(Type, Days, Samples, Direction, Statistic)
+
+data %<>% filter(Type == "Long-term chronic", Days == 1)
 
 #codes <- wqbc::ems_codes
 
