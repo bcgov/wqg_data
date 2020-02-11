@@ -9,7 +9,7 @@ data <- read_csv("all_wqgs.csv")
 data_old <- data
 
 data$Variable %<>%
-  str_replace_all("Colour true", "Colour True")
+  str_replace_all("Methyl Tertiary-Butyl Ether Total", "Methyl tertiary-butyl ether Total")
 
 if(FALSE) {
   patch <- diff_data(data_old, data)
