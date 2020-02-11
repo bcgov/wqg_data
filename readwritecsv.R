@@ -8,8 +8,10 @@ data <- read_csv("all_wqgs.csv")
 
 data_old <- data
 
+unique(data$Variable) %>% sort
+
 data$Variable %<>%
-  str_replace_all("Polycyclic Aromatic Hydrocarbons", "Polycyclic aromatic hydrocarbons")
+  str_replace_all("Colour apparent", "Colour Apparent")
 
 if(FALSE) {
   patch <- diff_data(data_old, data)
