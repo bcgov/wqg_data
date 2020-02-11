@@ -9,7 +9,7 @@ data <- read_csv("all_wqgs.csv")
 data_old <- data
 
 data$Variable %<>%
-  str_replace("^Dissolved Oxygen$", "Oxygen Dissolved")
+  str_replace_all("total", "Total")
 
 if(FALSE) {
   patch <- diff_data(data_old, data)
