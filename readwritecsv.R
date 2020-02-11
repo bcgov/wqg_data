@@ -9,7 +9,7 @@ data <- read_csv("all_wqgs.csv")
 data_old <- data
 
 data$Variable %<>%
-  str_replace_all("lodo-2-propynl butylcarbamate", "Lodo-2-propynl butylcarbamate")
+  str_replace_all("Colour true", "Colour True")
 
 if(FALSE) {
   patch <- diff_data(data_old, data)
