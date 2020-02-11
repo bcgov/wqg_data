@@ -11,7 +11,7 @@ data_old <- data
 unique(data$Variable) %>% sort
 
 data$Variable %<>%
-  str_replace_all("Colour apparent", "Colour Apparent")
+  str_replace_all("Conductivity, specific", "Conductivity Specific")
 
 if(FALSE) {
   patch <- diff_data(data_old, data)
