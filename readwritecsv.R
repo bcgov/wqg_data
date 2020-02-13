@@ -11,8 +11,8 @@ data_old <- data
 setdiff(unique(data$Condition), NA) %>% sort
 
 data$Condition %<>%
-  str_replace_all("^EMS_0107 \\| EMS_1107 <= 90$",
-                  "EMS_0107 <= 90 | EMS_1107 <= 90")
+  str_replace_all("^EMS_0107 \\| EMS_1107 > 10$",
+                  "EMS_0107 > 10 | EMS_1107 > 10")
 
 if(FALSE) {
   patch <- diff_data(data_old, data)
