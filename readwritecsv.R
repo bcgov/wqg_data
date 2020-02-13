@@ -8,10 +8,11 @@ data <- read_csv("all_wqgs.csv")
 
 data_old <- data
 
-unique(data$Variable) %>% sort
+setdiff(unique(data$Condition), NA) %>% sort
 
-data$Variable %<>%
-  str_replace_all("Conductivity, specific", "Conductivity Specific")
+data$Condition %<>%
+  str_replace_all("0<= EMS_0013 <= 20 & 8 <= EMS_0004 <=9",
+                  "0<= EMS_0013 & EMS_0013 <= 20 & 8 <= EMS_0004 & EMS_0004 <=9")
 
 if(FALSE) {
   patch <- diff_data(data_old, data)
