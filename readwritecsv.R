@@ -28,10 +28,9 @@ for(i in x){
   if(is.na(y)) break
 }
 
-data$LimitNotes[data$Limit == "20.36 (duration in minutes)^-0.4"] <- "20.36 (duration in minutes)^-0.4"
 data$Limit %<>%
-  str_replace_all("20.36 \\(duration in minutes\\)\\^-0.4",
-                  NA_character_)
+  str_replace_all("100,000",
+                  "100000")
 
 if(FALSE) {
   patch <- diff_data(data_old, data)
