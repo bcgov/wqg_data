@@ -11,8 +11,8 @@ data_old <- data
 unique(data$Condition[!is.na(data$Condition)]) %>% sort
 
 data$Condition %<>%
-  str_replace_all("^^\\(EMS_0107 \\> 180 \\& EMS_0107 <= 250\\) \\| \\(EMS_1107 \\> 180 \\& EMS_1107 \\<= 250\\)$$",
-                  "(!is.na(EMS_0107) & (EMS_0107 > 180 & EMS_0107 <= 250)) | (!is.na(EMS_1107) & (EMS_1107 > 180 & EMS_1107 <= 250))")
+  str_replace_all("^^\\(EMS_0107 \\> 30 \\& EMS_0107 <= 75\\) \\| \\(EMS_1107 \\> 30 \\& EMS_1107 \\<= 75\\)$$",
+                  "(!is.na(EMS_0107) & (EMS_0107 > 30 & EMS_0107 <= 75)) | (!is.na(EMS_1107) & (EMS_1107 > 30 & EMS_1107 <= 75))")
 
 if(FALSE) {
   patch <- diff_data(data_old, data)
