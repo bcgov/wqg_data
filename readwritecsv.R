@@ -8,7 +8,9 @@ data <- read_csv("all_wqgs.csv")
 
 data_old <- data
 
-data$Direction[data$Variable == "Diethyl phthalate" & data$Limit == "0.611"] <- "Lower Limit"
+data$Variable %<>%
+  str_replace_all("Benzofluroanthenes \\(all\\)",
+                  "Benzofluoranthenes (All)")
 
 if(FALSE) {
   patch <- diff_data(data_old, data)
