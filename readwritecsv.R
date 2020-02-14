@@ -8,9 +8,7 @@ data <- read_csv("all_wqgs.csv")
 
 data_old <- data
 
-data$Limit %<>%
-  str_replace_all("43,766",
-                  "43766")
+data$Direction[data$Variable == "Diethyl phthalate" & data$Limit == "0.611"] <- "Lower Limit"
 
 if(FALSE) {
   patch <- diff_data(data_old, data)
