@@ -8,26 +8,6 @@ data <- read_csv("all_wqgs.csv")
 
 data_old <- data
 
-calc_limit <- function (x, cvalues) {
-  x <- try(eval(parse(text = as.character(x)), envir = cvalues), silent = TRUE)
-  if(class(x) != "numeric")
-    return (NA)
-  x
-}
-
-cvalues <- list(EMS_0004 = 10, EMS_0013 = 10, EMS_0107 = 10,
-                EMS_HGME = 10, EMS_HG_T = 10, EMS_CA_D = 10,
-                EMS_1107 = 10, EMS_0104 = 10)
-
-x <- unique(data$Limit[!is.na(data$Limit)])
-# x <- x[str_detect(x, "EMS_")]
-
-for(i in x){
-  print(i)
-  y <- calc_limit(i, cvalues)
-  if(is.na(y)) break
-}
-
 data$Limit %<>%
   str_replace_all("43,766",
                   "43766")
