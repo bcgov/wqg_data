@@ -9,8 +9,8 @@ data <- read_csv("all_wqgs.csv")
 data_old <- data
 
 data$Variable %<>%
-  str_replace_all("Benzofluroanthenes \\(all\\)",
-                  "Benzofluoranthenes (All)")
+  str_replace_all("Polychlorinated Biphenyl 105 Total",
+                  "Polychlorinated biphenyl 105 Total")
 
 if(FALSE) {
   patch <- diff_data(data_old, data)
