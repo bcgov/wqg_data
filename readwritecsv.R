@@ -8,11 +8,29 @@ data <- read_csv("all_wqgs.csv")
 
 data_old <- data
 
-unique(data$Condition[!is.na(data$Condition)]) %>% sort
+calc_limit <- function (x, cvalues) {
+  x <- try(eval(parse(text = as.character(x)), envir = cvalues), silent = TRUE)
+  if(class(x) != "numeric")
+    return (NA)
+  x
+}
 
-data$Condition %<>%
-  str_replace_all("^EMS_0107 \\| EMS_1107 > 8$",
-                  "EMS_0107 > 8 | EMS_1107 > 8")
+cvalues <- list(EMS_0004 = 10, EMS_0013 = 10, EMS_0107 = 10,
+                EMS_HGME = 10, EMS_HG_T = 10, EMS_CA_D = 10,
+                EMS_1107 = 10, EMS_0104 = 10)
+
+x <- unique(data$Limit[!is.na(data$Limit)])
+x <- x[str_detect(x, "EMS_")]
+
+for(i in x){
+  print(i)
+  y <- calc_limit(i, cvalues)
+  if(is.na(y)) break
+}
+
+data$Limit %<>%
+  str_replace_all("LOG",
+                  "log")
 
 if(FALSE) {
   patch <- diff_data(data_old, data)
