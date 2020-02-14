@@ -29,8 +29,12 @@ for(i in x){
 }
 
 data$Limit %<>%
-  str_replace_all("2,000",
-                  "2000")
+  str_replace_all("3,000",
+                  "3000")
+
+data$Limit %<>%
+  str_replace_all("5,000",
+                  "5000")
 
 if(FALSE) {
   patch <- diff_data(data_old, data)
