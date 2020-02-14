@@ -20,7 +20,7 @@ cvalues <- list(EMS_0004 = 10, EMS_0013 = 10, EMS_0107 = 10,
                 EMS_1107 = 10, EMS_0104 = 10)
 
 x <- unique(data$Limit[!is.na(data$Limit)])
-x <- x[str_detect(x, "EMS_")]
+# x <- x[str_detect(x, "EMS_")]
 
 for(i in x){
   print(i)
@@ -29,8 +29,8 @@ for(i in x){
 }
 
 data$Limit %<>%
-  str_replace_all("LOG",
-                  "log")
+  str_replace_all("0.000 01",
+                  "0.00001")
 
 if(FALSE) {
   patch <- diff_data(data_old, data)
