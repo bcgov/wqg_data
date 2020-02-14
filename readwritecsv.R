@@ -29,8 +29,8 @@ for(i in x){
 }
 
 data$Limit %<>%
-  str_replace_all("21,200",
-                  "21200")
+  str_replace_all("2,000",
+                  "2000")
 
 if(FALSE) {
   patch <- diff_data(data_old, data)
