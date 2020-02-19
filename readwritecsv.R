@@ -8,9 +8,10 @@ data <- read_csv("all_wqgs.csv")
 
 data_old <- data
 
-data$Variable %<>%
-  str_replace_all("Polychlorinated Biphenyl 105 Total",
-                  "Polychlorinated biphenyl 105 Total")
+data$Condition[!is.na(data$Condition)]
+data$Condition %<>%
+  str_replace_all("EMS_CA_D  >=  4 \\| EMS_CA_D <= 8",
+                  "EMS_CA_D  >=  4 & EMS_CA_D <= 8")
 
 if(FALSE) {
   patch <- diff_data(data_old, data)
