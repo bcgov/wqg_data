@@ -8,10 +8,12 @@ data <- read_csv("all_wqgs.csv")
 
 data_old <- data
 
-data$Condition[!is.na(data$Condition)]
-data$Condition %<>%
-  str_replace_all("EMS_CA_D  >=  4 \\| EMS_CA_D <= 8",
-                  "EMS_CA_D  >=  4 & EMS_CA_D <= 8")
+data$Component <- if_else(str_detect(tolower(data$Variable), "dissolved"), "Dissolved", "Total")
+
+data %<>% select(UniqueID, Variable, Component, everything())
+
+data$Variable %<>%
+  str_replace_all("Total|Dissolved", "")
 
 if(FALSE) {
   patch <- diff_data(data_old, data)
