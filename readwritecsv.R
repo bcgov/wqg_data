@@ -8,9 +8,8 @@ data <- read_csv("all_wqgs.csv")
 
 data_old <- data
 
-data$Condition[data$Variable == "Mercury" & data$Limit == 0.02] <- "(EMS_HGME / EMS_HG_T * 100) <= 0.5"
-data$Condition[data$Variable == "Mercury" & data$Limit == "10^(-4) / (EMS_HGME / EMS_HG_T)"] <- "EMS_HGME / EMS_HG_T * 100 > 0.5"
-
+data$EMS_Code %<>%
+  str_replace_all("-", "_")
 
 if(FALSE) {
   patch <- diff_data(data_old, data)
