@@ -8,11 +8,8 @@ data <- read_csv("all_wqgs.csv")
 
 data_old <- data
 
-data$LimitNotes[which(data$Variable %in% c("Nitrate", "Nitrite"))] <- "Reported as N"
-data$Units[which(data$Units == "mg/L N")] <- "mg/L"
-
-data$ConditionNotes[which(data$ConditionNotes == "Reported as nitrite.")] <- NA
-data$ConditionNotes[which(data$ConditionNotes == "Reported as nitrate.")] <- NA
+data$Limit %<>%
+  str_replace_all("LN", "log")
 
 if(FALSE) {
   patch <- diff_data(data_old, data)
