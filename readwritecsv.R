@@ -8,8 +8,8 @@ data <- read_csv("all_wqgs.csv")
 
 data_old <- data
 
-data$Limit %<>%
-  str_replace_all("LN", "log")
+data <- data %>%
+  dplyr::filter_all(dplyr::any_vars(!is.na(.)))
 
 if(FALSE) {
   patch <- diff_data(data_old, data)
