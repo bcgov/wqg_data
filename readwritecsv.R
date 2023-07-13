@@ -2,22 +2,11 @@ library(tidyverse)
 library(magrittr)
 library(wqbc)
 library(rems)
-library(daff)
 
 data <- read_csv("all_wqgs.csv")
 
-data_old <- data
-
 data <- data %>%
   dplyr::filter_all(dplyr::any_vars(!is.na(.)))
-
-if(FALSE) {
-  patch <- diff_data(data_old, data)
-  render_diff(patch)
-
-  write_csv(data, "all_wqgs.csv", na = "")
-  saveRDS(patch, "patch.RDS")
-}
 
 distinct(select(data, Type, Days, Samples, Direction, Statistic)) %>%
   filter(!is.na(Direction)) %>%
